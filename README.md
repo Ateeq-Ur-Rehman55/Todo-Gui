@@ -1,4 +1,4 @@
-# This is an express api.
+# This is a todo web app.
 
 # Features:
 
