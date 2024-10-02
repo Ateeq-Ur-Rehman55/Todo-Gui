@@ -2,7 +2,7 @@
 
 # Features:
 
-### Create / Post
-### Update / Put
-### Read all / Read on specific id / Get
-### Delete On speicfic id / delete
+### Create todos
+### Update todos
+### Read todos
+### Delete todos
