@@ -1,5 +1,4 @@
 // let new_data;
-
 // let new_id;
 let del_id;
 let update_id;
@@ -43,7 +42,6 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
                 } else {
                     updating = true;
                     is_edit = true;
-                    // const usupdate = document.getElementById(update_input.id).value
                     update_id = e.originalTarget.id;
                     for (let j = 0; j < data.length; j++) {
                         if (update_id == data[j]['id']) {
@@ -58,50 +56,7 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
                     let removeElmnt = document.getElementById('container')
                     removeElmnt.remove()
                 }
-                // submit btn again...
-
-                // remove the old value
-                // const requestOptions = {
-                //     method: "DELETE",
-                //     redirect: "follow"
-                // };
-
-                // fetch(`http://localhost:3000/api/courses/${update_id}`, requestOptions)
-                //     .then((response) => response.text())
-                //     .then((result) => console.log(result))
-                //     .catch((error) => console.error(error));
-                // setTimeout(() => {
-                //     window.location.reload();
-                // }, 100);
-
-                // console.log(usupdate + "  value dot")
-                // console.log(`update id = ${update_id}`)
-                // // api call 
-                // const myHeaders = new Headers();
-                // myHeaders.append("Content-Type", "application/json");
-                // // let inputId = document.getElementById(data[i]['id'])
-                // // console.log(`value of new id ${data[i]['name']}`.value)
-                // const raw = JSON.stringify({
-                //     "name": usupdate
-                // });
-
-                // const requestOptions = {
-                //     method: "PUT",
-                //     headers: myHeaders,
-                //     body: raw,
-                //     redirect: "follow"
-                // };
-
-                // fetch(`http://localhost:3000/api/courses/${update_id}`, requestOptions)
-                //     .then((response) => response.text())
-                //     .then((result) => console.log(result))
-                //     .catch((error) => console.error(error));
-                // setTimeout(() => {
-                //     window.location.reload();
-                // }, 100);
             })
-            // del.addEventListener("click", deleteBtnClicked(data[i]["id"]));
-            // if any delete button click it check the id and delete it 
             clearAll.addEventListener('click', async (e) => {
                 for (let k = 0; k < data.length; k++) {
                     let id = data[k]['id']
@@ -142,17 +97,6 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             body.append(div)
             // body.append(br)
         }
-        // del.addEventListener('click', function () {
-        // const requestOptions = {
-        //     method: "DELETE",
-        //     redirect: "follow"
-        // };
-
-        // fetch(`http://localhost:3000/api/courses/12`, requestOptions)
-        //     .then((response) => response.text())
-        //     .then((result) => console.log(result))
-        //     .catch((error) => console.error(error));
-        // })
 
         // taking input and storing it in data.json file.
         var input = document.getElementById("userInput");
@@ -162,7 +106,7 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
                 document.getElementById("submitBtn").click();
             }
         });
-        submitBtn.addEventListener('click', async (e) => {
+        submitBtn.addEventListener('click', async () => {
             if (userInput.value == "") {
                 alert("Write something and try again...")
             } else if (is_edit == true) {
@@ -233,64 +177,5 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             }
         })
     }).catch((err) => {
-        alert('Write something and try again...')
+        alert(err)
     })
-
-// const submitBtn = document.getElementById('submitBtn');
-// const userInput = document.getElementById('userInput');
-// const display = document.getElementById('display');
-
-// const { response } = require("express");
-
-// submitBtn.addEventListener('click', function() {
-//     // const inputText = userInput.value;
-//     let id = 1;
-//     display.textContent = data;
-// });
-
-// fetch("data.json", {
-//     method: "POST",
-//     body: JSON.stringify({
-//       id: 1,
-//       title: "Fix my bugs"
-//     }),
-//     headers: {
-//       "Content-type": "application/json; charset=UTF-8"
-//     }
-//   });
-
-// const raw = "";
-
-// const requestOptions = {
-//   method: "GET",
-//   body: raw,
-//   redirect: "follow"
-// };
-
-// fetch("http://localhost:3000/api/courses", requestOptions)
-//   .then((response) => response.json())
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((error) => console.error(error));
-//                                                      ======  post request  =====
-
-// const myHeaders = new Headers();
-// myHeaders.append("Content-Type", "application/json");
-// const raw = JSON.stringify({
-//     "id": new_id,
-//     "name": new_data
-// });
-
-// const requestOptions = {
-//     method: "POST",
-//     headers: myHeaders,
-//     body: raw,
-//     redirect: "follow"
-// };
-
-// fetch("http://localhost:3000/api/courses", requestOptions)
-//     .then((response) => response.text())
-//     .then((result) => console.log(result))
-//     .catch((error) => console.error(error));
-

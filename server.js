@@ -1,4 +1,3 @@
-// const Joi = require('joi');
 const cors = require('cors')
 const express = require('express')
 const fs = require('node:fs')
@@ -21,7 +20,7 @@ fs.readFile('data.json', 'utf8', (err, data) => {
                 // console.log(item)
                 courses.push(item)
             }
-            console.log('courses ', courses)
+            // console.log('courses ', courses)
         }
     }
 });
@@ -47,7 +46,7 @@ app.post('/api/courses', (req, res) => {
         }
     };
     courses.push(course)
-    console.log('finall all courses ', courses)
+    // console.log('finall all courses ', courses)
     let final_data = JSON.stringify(courses)
     fs.writeFile('data.json', final_data, err => {
         if (err) {
@@ -69,7 +68,7 @@ app.get('/api/courses', (req, res) => {
         if (err) {
             console.log(err)
         }
-        console.log(prm_data)
+        // console.log(prm_data)
         new_data = JSON.parse(prm_data)
         res.send(new_data)
     })
