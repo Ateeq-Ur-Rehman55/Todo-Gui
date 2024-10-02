@@ -114,7 +114,6 @@ app.delete('/api/courses/:id', (req, res) => {
     if (!course) return res.status(404).send('the course of this id not found');
     const index = courses.indexOf(course);
     courses.splice(index, 1);
-
     let final_data = JSON.stringify(courses)
     fs.writeFile('data.json', final_data, err => {
         if (err) {

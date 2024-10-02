@@ -3,7 +3,6 @@
     width: 80%;
     padding: 10px;
 }
-
 #userInput {
     padding: 15px;
     margin-left: 85px;
@@ -18,11 +17,19 @@
     margin-left: 95px;
     width: 80%;
 }
+#clearAll {
+    background-color: rgb(140, 10, 23);
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 95px;
+    width: 80%;
+}
 
 h1 {
     text-align: center;
     font-size: 50px;
-
+    font-family: 'Times New Roman', Times, serif;
 }
 
 div {
@@ -30,7 +37,7 @@ div {
     flex-grow: 1;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 5px;
     border: 1px solid #0f0f0f;
     border-width: 2px;
     margin: 10px;
@@ -54,7 +61,7 @@ input {
 
 .del {
     position: absolute;
-    right: 380px;
+    right: 410px;
     color: white;
     background-color: rgb(140, 10, 23);
     align-content: center;

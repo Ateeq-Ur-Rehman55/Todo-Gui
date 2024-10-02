@@ -2,11 +2,12 @@
 // let new_id;
 let del_id;
 let update_id;
+let old_todo;
 fetch('http://localhost:3000/api/courses')                   //fetching data
     .then(res => res.json())
     .then(data => {
         // body select to display data there
-        const body = document.querySelector('body')
+        const body = document.querySelector('p')
         for (let i = 0; i < data.length; i++) {
 
             //  adding todo data in p tag
@@ -23,37 +24,24 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             del_btn.id = `${data[i]['id']}`;
             del_btn.className = "del"
             del_btn.textContent = "Delete"
-            // update button and field
-            let update_input = document.createElement('input');
-            update_input.placeholder = "write for update...";
-            let num = data[i]['id']
-            update_input.id = `up${num}`
-            update_input.className = "updateInput";
-            // update_input.className = "userUpdate"
+
             let update_btn = document.createElement('button')
             update_btn.className = "update"
-            update_btn.textContent = "update";
+            update_btn.textContent = "Update";
             update_btn.id = `${data[i]['id']}`
             // updating value
             update_btn.addEventListener('click', async (e) => {
-                const usupdate = document.getElementById(update_input.id).value
-                let reqId = 
+                // const usupdate = document.getElementById(update_input.id).value
                 update_id = e.originalTarget.id;
-                console.log(usupdate + "  value dot")
-                console.log(`update id = ${update_id}`)
-                // api call 
-                const myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                // let inputId = document.getElementById(data[i]['id'])
-                // console.log(`value of new id ${data[i]['name']}`.value)
-                const raw = JSON.stringify({
-                    "name": usupdate
-                });
-
+                for (let j = 0; j < data.length; j++) {
+                    if (update_id == data[j]['id']) {
+                        old_todo = data[j]['name']
+                        console.log(`you are updating ${data[j]["name"]}`)
+                    }
+                }
+                // remove the old value
                 const requestOptions = {
-                    method: "PUT",
-                    headers: myHeaders,
-                    body: raw,
+                    method: "DELETE",
                     redirect: "follow"
                 };
 
@@ -61,12 +49,57 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
                     .then((response) => response.text())
                     .then((result) => console.log(result))
                     .catch((error) => console.error(error));
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 100);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 100);
+
+                // send new value to the input field
+                let updateInput = document.getElementById('userInput')
+                updateInput.value = old_todo;
+                // console.log(usupdate + "  value dot")
+                // console.log(`update id = ${update_id}`)
+                // // api call 
+                // const myHeaders = new Headers();
+                // myHeaders.append("Content-Type", "application/json");
+                // // let inputId = document.getElementById(data[i]['id'])
+                // // console.log(`value of new id ${data[i]['name']}`.value)
+                // const raw = JSON.stringify({
+                //     "name": usupdate
+                // });
+
+                // const requestOptions = {
+                //     method: "PUT",
+                //     headers: myHeaders,
+                //     body: raw,
+                //     redirect: "follow"
+                // };
+
+                // fetch(`http://localhost:3000/api/courses/${update_id}`, requestOptions)
+                //     .then((response) => response.text())
+                //     .then((result) => console.log(result))
+                //     .catch((error) => console.error(error));
+                // setTimeout(() => {
+                //     window.location.reload();
+                // }, 100);
             })
             // del.addEventListener("click", deleteBtnClicked(data[i]["id"]));
             // if any delete button click it check the id and delete it 
+            clearAll.addEventListener('click', async (e) => {
+                for(let k = 0; k < data.length; k++){
+                    let id = data[k]['id']
+                    const requestOptions = {
+                        method: "DELETE",
+                        redirect: "follow"
+                    };
+                    fetch(`http://localhost:3000/api/courses/${id}`, requestOptions)
+                    .then((response) => response.text())
+                    .then((result) => console.log(result))
+                    .catch((error) => console.error(error));
+                }
+                setTimeout(() => {
+                    window.location.reload();
+                }, 100);
+            })
             del_btn.addEventListener("click", async (e) => {
                 del_id = e.originalTarget.id;
                 console.log(`del id ${del_id}`);
@@ -85,7 +118,6 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             })
             div.append(del_btn)
             div.append(p)
-            div.append(update_input)
             div.append(update_btn)
             body.append(div)
             // body.append(br)
@@ -105,7 +137,13 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
         // taking input and storing it in data.json file.
         submitBtn.addEventListener('click', function () {
             let div = document.createElement('div')
-            let id = data[data.length - 1]['id'] + 1;
+            let id;
+            if (data.length < 1) {
+                id = 1;
+            }
+            else {
+                id = data[data.length - 1]['id'] + 1;
+            }
             const myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             const raw = JSON.stringify({
