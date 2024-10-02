@@ -53,12 +53,18 @@ input {
 }
 
 .del {
+    position: absolute;
+    right: 380px;
     color: white;
     background-color: rgb(140, 10, 23);
     align-content: center;
     align-items: center;
     align-self: center;
     text-size-adjust: 50px
+}
+.updateInput {
+    position: absolute;
+    right: 180px;
 }
 .update {
     color: white;

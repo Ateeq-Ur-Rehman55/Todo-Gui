@@ -28,6 +28,7 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             update_input.placeholder = "write for update...";
             let num = data[i]['id']
             update_input.id = `up${num}`
+            update_input.className = "updateInput";
             // update_input.className = "userUpdate"
             let update_btn = document.createElement('button')
             update_btn.className = "update"
@@ -82,8 +83,8 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
                     window.location.reload();
                 }, 100);
             })
-            div.append(p)
             div.append(del_btn)
+            div.append(p)
             div.append(update_input)
             div.append(update_btn)
             body.append(div)
