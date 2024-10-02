@@ -11,7 +11,9 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
 
             //  adding todo data in p tag
             let div = document.createElement('div')
+            div.className = "list-group-item text-capitalize d-flex justify-content-between my-2"
             let p = document.createElement('p')
+            p.className = "text"
             p = (`${data[i]['name']}`)
             p.id = data[i]['id'];
             // break tag
@@ -28,6 +30,7 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             update_input.id = `up${num}`
             // update_input.className = "userUpdate"
             let update_btn = document.createElement('button')
+            update_btn.className = "update"
             update_btn.textContent = "update";
             update_btn.id = `${data[i]['id']}`
             // updating value
@@ -84,7 +87,7 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             div.append(update_input)
             div.append(update_btn)
             body.append(div)
-            body.append(br)
+            // body.append(br)
         }
         // del.addEventListener('click', function () {
         // const requestOptions = {
