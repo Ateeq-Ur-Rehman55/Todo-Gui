@@ -85,16 +85,16 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             // del.addEventListener("click", deleteBtnClicked(data[i]["id"]));
             // if any delete button click it check the id and delete it 
             clearAll.addEventListener('click', async (e) => {
-                for(let k = 0; k < data.length; k++){
+                for (let k = 0; k < data.length; k++) {
                     let id = data[k]['id']
                     const requestOptions = {
                         method: "DELETE",
                         redirect: "follow"
                     };
                     fetch(`http://localhost:3000/api/courses/${id}`, requestOptions)
-                    .then((response) => response.text())
-                    .then((result) => console.log(result))
-                    .catch((error) => console.error(error));
+                        .then((response) => response.text())
+                        .then((result) => console.log(result))
+                        .catch((error) => console.error(error));
                 }
                 setTimeout(() => {
                     window.location.reload();
@@ -135,6 +135,13 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
         // })
 
         // taking input and storing it in data.json file.
+        var input = document.getElementById("userInput");
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("submitBtn").click();
+            }
+        });
         submitBtn.addEventListener('click', function () {
             let div = document.createElement('div')
             let id;
@@ -173,6 +180,7 @@ fetch('http://localhost:3000/api/courses')                   //fetching data
             let br = document.createElement('br')
             body.append(div)
             body.append(br)
+            userInput.value = ""
             setTimeout(() => {
                 window.location.reload();
             }, 50);
